@@ -6,3 +6,8 @@ Projects I have created in JS
 
 # 2. taskList
   An easy tool that allows you to add tasks.
+  - functions
+  - event listeners
+  - .creatElement
+  - Adding/removing items to the DOM (.appenndChild, removeChild, createElement, className)
+  - 

@@ -14,6 +14,10 @@ function loadEventListeners() {
     form.addEventListener('submit', addTask);
     //Remove task list
     taskList.addEventListener('click', removeTask);
+    // CLear task Event
+    clearBtn.addEventListener('click', clearTasks);
+    //Filter through the tasks
+    filter.addEventListener('keyup', filterTasks);
 }
 
 //Add Task
@@ -50,9 +54,35 @@ function addTask() {
 // Delete Task (little x on right side ot task card)
 function removeTask(e) {
     if(e.target.parentElement.classList.contains('delete-item')) {
-       // This shows that it is grabbing the x when clicked on console.log(e.target);
+       // This shows that it is grabbing the x when clicked on -> console.log(e.target);
        if(confirm('Are you sure?')) {
         e.target.parentElement.parentElement.remove();
        }
     }
+}
+
+//Clear tall tasks
+function clearTasks() {
+    // 1 way of doing it -> taskList.innerHTML = '';
+
+    //Faster way of doing it
+    while (taskList.firstChild) {
+        taskList.removeChild(taskList.firstChild);
+    }
+}
+
+function filterTasks(e) {
+    const text = e.target.value.toLowerCase();
+    // console.log(text);
+    //document.querySelector returns a node list (and not ann array) which is why we can use .forEach()
+    document.querySelectorAll('.collection-item').forEach(
+        function(task) {
+            const item = task.firstChild.textContent;
+            if(item.toLowerCase().indexOf(text) != -1) {
+                task.style.display = 'block';
+            } else {
+                task.style.display = 'none';
+            }
+    
+        });
 }
