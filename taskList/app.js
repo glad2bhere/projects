@@ -45,11 +45,30 @@ function addTask() {
     //Append li to the ul
     taskList.appendChild(li);
     
+    //Store in nlocal storage
+    storeTaskInLocalStorage(taskInput.value);
+
     //Claer the input
     taskInput.value = '';
 
     e.preventDefault();
 }
+
+//Store task to local storeage
+function storeTaskInLocalStorage(task) {
+    let tasks;
+    if(localStorage.getItem('tasks') == null) {
+        tasks = [];
+    } else {
+        
+        tasks = JSON.parse(localStorage.getItem('tasks')); //local storage only stores strings so need to pass via JSON
+    }
+
+    tasks.push(task);
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
 
 // Delete Task (little x on right side ot task card)
 function removeTask(e) {
