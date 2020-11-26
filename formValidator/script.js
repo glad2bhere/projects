@@ -24,6 +24,33 @@ function showSuccess(input) {
   formControl.className = 'form-control success';
 }
 
+//Check required fields
+function checkRequired(inputArr) {
+  inputArr.forEach(function(input) {
+    if(input.value.trim() === '') {
+      showError(input, `${getFieldName(input)} is required`);
+    } else {
+      showSuccess(input);
+    };
+  });
+}
+
+//Get fieldName
+function getFieldName(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
+//Event Listeners
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  checkRequired([username, email, password, password2]);
+
+});
+
+
+
+/* These were refactored to the above code
 //Event Listeners
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -31,7 +58,7 @@ form.addEventListener('submit', (e) => {
   if(username.value === '') {
     showError(username, 'Username is Required');
   } else {
-    showSuccess(username);
+    showSuccess(username); 
   }
 
   if(email.value === '') {
@@ -53,5 +80,5 @@ form.addEventListener('submit', (e) => {
   } else {
     showSuccess(password2);
   }
-})
+}); */
 
