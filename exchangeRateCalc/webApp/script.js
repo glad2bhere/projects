@@ -12,13 +12,13 @@ function calculate() {
     const currency_two = currencyEl_2.value;
 
     //console.log(currencyEl_1, currencyEl_2);
-    fetch(`https://open.exchangerate-api.com/v6/latest${currency_one}`)
+    fetch(`https://api.exchangeratesapi.io/latest?base=${currency_one}`)
         .then(res => res.json())
         .then(data => {
             //console.log(data);
             const rate = data.rates[currency_two];
 
-            console.log(rate);
+            rateEl.innerText = `1 ${currency_one} = ${rate} ${currency_two}`
         });
 }
 
