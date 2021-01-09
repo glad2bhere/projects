@@ -61,6 +61,7 @@ input[type='text'] {
 }
 
 .meal {
+  /* Individual meal boxes */
   cursor: pointer;
   position: relative;
   height: 180px;
@@ -87,6 +88,10 @@ input[type='text'] {
   justify-content: center;
   transition: opacity 0.2s ease-in;
   opacity: 0;
+}
+
+p.meal-type {
+  position: bottom;
 }
 
 .meal:hover .meal-info {
